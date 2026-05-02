@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA | Inquiries</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header scrolled">
+        <div class="brand-logo"><a href="/static/index.html">Aurelia</a></div>
+        <nav class="nav-links">
+            <a href="/static/index.html">Shop</a>
+            <a href="/static/about.html">About</a>
+            <a href="/static/contact.html" class="active">Contact</a>
+            <a href="#" class="cart-toggle">Cart <span class="cart-count">0</span></a>
+        </nav>
+    </header>
+
+    <div class="page-container fade-in">
+        <h1 class="editorial-heading" style="text-align: center;">Inquiries</h1>
+        <p class="editorial-subheading" style="text-align: center; margin-bottom: 3rem;">For bespoke requests or order assistance, please reach out.</p>
+        
+        <form id="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" class="form-control" placeholder="Your Email Address" required>
+            </div>
+            <div class="form-group">
+                <textarea id="inquiry" class="form-control" placeholder="How may we assist you?" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Submit Inquiry</button>
+        </form>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Selection</h3>
+            <button class="btn-close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <a href="/static/checkout.html" class="btn-primary btn-checkout">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" id="chat-fab">A</button>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            Aurelia Concierge
+            <button class="btn-close-chat" id="close-chat" style="background:none; border:none; cursor:pointer;">&times;</button>
+        </div>
+        <div class="chat-messages" id="chat-messages-container">
+            <div class="message bot">Welcome to AURELIA. I am your personal concierge. How may I assist you with our collection today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Inquire about items, materials...">
+            <button id="chat-send">Send</button>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

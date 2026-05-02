@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA | Luxury Fashion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="has-hero">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="brand-logo"><a href="/static/index.html">Aurelia</a></div>
+        <nav class="nav-links">
+            <a href="/static/index.html" class="active">Shop</a>
+            <a href="/static/about.html">About</a>
+            <a href="/static/contact.html">Contact</a>
+            <a href="#" class="cart-toggle">Cart <span class="cart-count">0</span></a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero fade-in">
+        <div class="hero-content">
+            <h1 class="editorial-heading">Aurelia Boutique</h1>
+            <p class="editorial-subheading">Discover a world of romantic silhouettes, soft pastels, and dreamy elegance.</p>
+            <a href="#shop" class="btn-primary">Shop the Collection</a>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="shop" class="products-section">
+        <h2 class="editorial-heading text-center" style="text-align: center;">Our Loveliest Pieces</h2>
+        <div class="products-grid" id="products-grid">
+            <!-- Products will be injected here via script.js -->
+        </div>
+    </section>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Selection</h3>
+            <button class="btn-close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <!-- Cart items injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <a href="/static/checkout.html" class="btn-primary btn-checkout">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" id="chat-fab">A</button>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            Aurelia Concierge
+            <button class="btn-close-chat" id="close-chat" style="background:none; border:none; cursor:pointer;">&times;</button>
+        </div>
+        <div class="chat-messages" id="chat-messages-container">
+            <div class="message bot">Welcome to AURELIA. I am your personal concierge. How may I assist you with our collection today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Inquire about items, materials...">
+            <button id="chat-send">Send</button>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

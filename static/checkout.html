@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA | Secure Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header scrolled">
+        <div class="brand-logo"><a href="/static/index.html">Aurelia</a></div>
+        <nav class="nav-links">
+            <a href="/static/index.html">Shop</a>
+            <a href="/static/about.html">About</a>
+            <a href="/static/contact.html">Contact</a>
+            <a href="#" class="cart-toggle">Cart <span class="cart-count">0</span></a>
+        </nav>
+    </header>
+
+    <div class="page-container fade-in" style="max-width: 1000px;">
+        <h1 class="editorial-heading">Secure Checkout</h1>
+        
+        <div class="checkout-grid">
+            <div>
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-sans);">Payment Details</h3>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group" style="display:flex; gap:1rem;">
+                        <input type="text" class="form-control" placeholder="First Name" required>
+                        <input type="text" class="form-control" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Card Number (Simulation)" required>
+                    </div>
+                    <div class="form-group" style="display:flex; gap:1rem;">
+                        <input type="text" class="form-control" placeholder="MM/YY" required>
+                        <input type="text" class="form-control" placeholder="CVC" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;">Complete Order</button>
+                    <div id="checkout-messages"></div>
+                </form>
+            </div>
+            
+            <div class="checkout-summary">
+                <h3 style="margin-bottom: 1.5rem; font-family: var(--font-sans); border-bottom: 1px solid var(--color-obsidian); padding-bottom: 0.5rem;">Order Summary</h3>
+                <div id="checkout-items" style="margin-bottom: 2rem;">
+                    <!-- Items populated by JS -->
+                </div>
+                <div style="display: flex; justify-content: space-between; font-family: var(--font-serif); font-size: 1.5rem; border-top: 1px solid var(--color-obsidian); padding-top: 1rem;">
+                    <span>Total</span>
+                    <span id="checkout-total">$0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Selection</h3>
+            <button class="btn-close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items-container"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <a href="/static/checkout.html" class="btn-primary btn-checkout">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <!-- Chat FAB -->
+    <button class="chat-fab" id="chat-fab">A</button>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">
+            Aurelia Concierge
+            <button class="btn-close-chat" id="close-chat" style="background:none; border:none; cursor:pointer;">&times;</button>
+        </div>
+        <div class="chat-messages" id="chat-messages-container">
+            <div class="message bot">Welcome to AURELIA. I am your personal concierge. How may I assist you with our collection today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Inquire about items, materials...">
+            <button id="chat-send">Send</button>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
