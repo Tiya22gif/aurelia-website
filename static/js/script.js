@@ -64,8 +64,20 @@ async function loadProducts() {
     if (!grid) return;
 
     try {
-        const response = await fetch('/products');
-        const products = await response.json();
+        let products = [];
+        try {
+            const response = await fetch('/products');
+            if (!response.ok) throw new Error('API not available');
+            products = await response.json();
+        } catch (e) {
+            console.warn('Backend not reachable, using fallback static products data');
+            products = [
+                { id: 1, name: "Obsidian Evening Gown", price: 2500.00, imageURL: "images/product-1.jpg" },
+                { id: 2, name: "Champagne Silk Blouse", price: 850.00, imageURL: "images/product-2.jpg" },
+                { id: 3, name: "Hand-Sourced Cashmere Coat", price: 3200.00, imageURL: "images/product-3.jpg" },
+                { id: 4, name: "Pure White Tailored Trousers", price: 950.00, imageURL: "images/product-4.jpg" }
+            ];
+        }
         
         grid.innerHTML = '';
         products.forEach(p => {
@@ -165,12 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.textContent = 'Processing...';
 
                 try {
-                    const res = await fetch('/process-payment', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({ cart, total, email })
-                    });
-                    const data = await res.json();
+                    let data;
+                    try {
+                        const res = await fetch('/process-payment', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({ cart, total, email })
+                        });
+                        if (!res.ok) throw new Error('API error');
+                        data = await res.json();
+                    } catch (e) {
+                        console.warn("Backend unavailable, simulating checkout.");
+                        await new Promise(r => setTimeout(r, 1500));
+                        data = { status: "Payment Successful (Simulation)" };
+                    }
                     
                     const msgDiv = document.getElementById('checkout-messages');
                     msgDiv.textContent = data.status;
@@ -197,12 +217,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const inquiry = document.getElementById('inquiry').value;
             
             try {
-                const res = await fetch('/contact-submit', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ name, email, inquiry })
-                });
-                const data = await res.json();
+                let data;
+                try {
+                    const res = await fetch('/contact-submit', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ name, email, inquiry })
+                    });
+                    if (!res.ok) throw new Error('API error');
+                    data = await res.json();
+                } catch (e) {
+                    console.warn("Backend unavailable, simulating contact submit.");
+                    data = { message: `Thank you, ${name}. We have received your inquiry (Simulated).` };
+                }
                 alert(data.message);
                 contactForm.reset();
             } catch(err) {
@@ -268,12 +295,18 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
 
             try {
-                const res = await fetch('/chat', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ message: text })
-                });
-                const data = await res.json();
+                let data;
+                try {
+                    const res = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ message: text })
+                    });
+                    if (!res.ok) throw new Error('API error');
+                    data = await res.json();
+                } catch (e) {
+                    data = { response: "I am currently functioning in offline mode. Please contact us via the contact form for inquiries." };
+                }
                 appendMessage(data.response, 'bot');
             } catch (err) {
                 appendMessage('Sorry, I am currently unavailable.', 'bot');
